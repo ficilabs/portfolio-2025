@@ -8,6 +8,17 @@ if (process.client) {
   gsap.registerPlugin(TextPlugin)
 }
 
+interface Project {
+  id: string | number
+  title: string
+  description: string
+  demo?: { url: string }
+  code?: { url: string }
+  media: { id: string | number; filename: string; alt?: string }
+}
+
+const props = defineProps<{ project: Project }>()
+
 const titleTimeline = ref<gsap.core.Timeline>()
 const titleScrollTimeline = ref<gsap.core.Timeline>()
 const cursorTimeline = ref<gsap.core.Timeline>()
@@ -19,24 +30,11 @@ const cursorRef = ref<Element>()
 const titleRef = ref<Element>()
 const windowRef = ref<Element>()
 
-// Static content (instead of Storyblok)
-const project = {
-  title: 'My Cool Project',
-  description: 'This is a static Nuxt project example with GSAP animation.',
-  demo: { url: 'https://example.com/demo' },
-  code: { url: 'https://github.com/example/project' },
-  media: {
-    id: '1',
-    filename: 'https://www.marloncureg.com/wp-content/uploads/2017/04/3d-web.jpg',
-    alt: 'Screenshot of project'
-  }
-}
-
 onMounted(() => {
   if (cursorRef.value && titleRef.value && windowRef.value) {
     cursorTimeline.value = createCursorTimeline(cursorRef.value)
-    titleTimeline.value = createTitleTimeline(titleRef.value, project.title).pause(0)
-    titleScrollTimeline.value = createTitleTimeline(titleRef.value, project.title).pause(0)
+    titleTimeline.value = createTitleTimeline(titleRef.value, props.project.title).pause(0)
+    titleScrollTimeline.value = createTitleTimeline(titleRef.value, props.project.title).pause(0)
     windowObserver.value = elevateAnimationObserver(windowRef.value)
     titleObserver.value = createTitleObserver(titleRef.value, titleScrollTimeline.value)
   }
@@ -83,7 +81,7 @@ function createCursorTimeline(cursorRef: Element) {
 
 function onLinkHover(text: string) {
   if (text === previousText.value) return
-  if (text !== project.title && timeout.value > 0) {
+  if (text !== props.project.title && timeout.value > 0) {
     clearTimeout(timeout.value)
   }
   titleScrollTimeline.value?.pause(0)
@@ -95,9 +93,9 @@ function onLinkHover(text: string) {
     titleTimeline.value.play(0)
     titleTimeline.value.eventCallback('onComplete', () => {
       cursorTimeline.value?.restart()
-      if (text !== project.title) {
+      if (text !== props.project.title) {
         timeout.value = setTimeout(() => {
-          onLinkHover(project.title)
+          onLinkHover(props.project.title)
         }, 500)
       }
     })
@@ -127,7 +125,7 @@ function textAnimation(elem: Element, text: string): gsap.core.Tween {
       </p>
       <div class="project__links">
         <MyLink
-          v-if="project.demo.url"
+          v-if="project.demo?.url"
           class="project__link"
           :link="project.demo.url"
           @mouseenter.native="onLinkHover('Play with it')"
@@ -135,7 +133,7 @@ function textAnimation(elem: Element, text: string): gsap.core.Tween {
           Live
         </MyLink>
         <MyLink
-          v-if="project.code.url"
+          v-if="project.code?.url"
           class="project__link"
           :link="project.code.url"
           @mouseenter.native="onLinkHover('Check code')"
@@ -156,16 +154,11 @@ function textAnimation(elem: Element, text: string): gsap.core.Tween {
         </div>
         <MyImage
           class="window__image"
-          :blok="{
-            image: {
-              id: project.media.id,
-              filename: project.media.filename,
-              alt: project.media.alt
-            },
-            width: 370,
-            height: 231.25
-          }"
-          :size-list="[512, 768, 640]"
+          :src="project.media.filename"
+          :alt="project.media.alt"
+          :width="370"
+          :height="231.25"
+          :sizeList="[512, 768, 640]"
           :breakpoints="[420, 600, 768]"
         />
       </div>

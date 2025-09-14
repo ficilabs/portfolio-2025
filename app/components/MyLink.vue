@@ -7,7 +7,7 @@ withDefaults(defineProps<{ link: string, external?: boolean }>(), {
 
 </script>
 <template>
-  <NuxtLinkLocale
+  <NuxtLink
     class="link"
     :to="link"
     :target="external ? '_blank' : '_self'"
@@ -18,5 +18,5 @@ withDefaults(defineProps<{ link: string, external?: boolean }>(), {
 
       <slot></slot>
     </TextWithArrow>
-  </NuxtLinkLocale>
+  </NuxtLink>
 </template>

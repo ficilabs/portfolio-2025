@@ -8,8 +8,6 @@ const navRef = ref<Element>()
 const storyLinks = computed(() => [
   { text: 'Home', icon: '/sprite.svg#home', path: '/' },
   { text: 'Projects', icon: '/sprite.svg#projects', path: '/projects' },
-  { text: 'Blog', icon: '/sprite.svg#blog', path: '/blog' },
-  { text: 'Photos', icon: '/sprite.svg#photos', path: '/photos' },
   { text: 'About', icon: '/sprite.svg#about', path: '/about' },
 ])
 

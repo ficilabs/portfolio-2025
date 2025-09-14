@@ -106,9 +106,11 @@ function onFilterSelected(tag: FilterButton['tag']): void {
           class="filter__elem"
         >
           <MyButton
+            :text="button.tag"
             :blok="button"
             :is-selected="button.tag === filterSelected"
             @buttonClicked="onFilterSelected(button.tag)"
+            isRound
           />
         </li>
       </ul>

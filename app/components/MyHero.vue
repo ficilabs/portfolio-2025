@@ -104,7 +104,13 @@ function animateHero(
       ref="heroGroupRef"
       class="hero__group"
     >
-      <p ref="textRef" class="hero__text" v-if="description">{{ description }}</p>
+      <client-only>
+        <MyRichText
+          ref="textRef"
+          class="hero__text"
+          :text="`${props.description}`"
+        />
+      </client-only>
       
       <MyButtonList
         ref="buttonsRef"

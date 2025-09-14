@@ -125,6 +125,7 @@ function onClick(event: Event): void {
     padding: 5px 11px;
     font-size: 14px;
     transform: translate3d(-7px, -7px, 0);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   }
 
   &--selected {

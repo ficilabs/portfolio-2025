@@ -20,7 +20,8 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  alt: '',
+  src: 'https://a.storyblok.com/f/95455/2560x1600/8301f1b8cc/popmots-screenshot.png',
+  alt: 'non of them',
   width: 0,
   height: 0,
   autoSize: true,
@@ -76,7 +77,7 @@ const webpSources = computed(() =>
   srcsetWebp.value.map((s, i) => ({ srcset: s, index: i }))
 )
 const pngSources = computed(() =>
-  srcsetPng.value.map((s, i) => ({ srcset: s, index: i }))
+  (srcsetPng.value ?? []).map((s, i) => ({ srcset: s, index: i }))
 )
 
 // Local convenience copy of breakpoints (always exists because of defaults)
@@ -127,8 +128,8 @@ function loadImage(pictureElement: HTMLPictureElement) {
 
       <!-- Photo modal simplified sources -->
       <template v-if="isPhotoModal">
-        <source :data-srcset="webpSources[0]?.srcset" type="image/webp" />
-        <source :data-srcset="pngSources[0]?.srcset" type="image/png" />
+  <source v-if="webpSources[0]" :data-srcset="webpSources[0].srcset" type="image/webp" />
+  <source v-if="pngSources?.[0]" :data-srcset="pngSources?.[0]?.srcset" type="image/png" />
       </template>
 
       <!-- Responsive sources (WEBP) -->
@@ -136,51 +137,51 @@ function loadImage(pictureElement: HTMLPictureElement) {
         <template v-if="bps && bps.length">
           <!-- First: max-width <= breakpoints[0] -->
           <source
-            v-if="webpSources.length"
+            v-if="webpSources[0]"
             :data-srcset="webpSources[0].srcset"
             :media="`(max-width: ${bps[0]}px)`"
             type="image/webp"
           />
 
           <!-- Middle ranges: for index > 0 and index < webpSources.length - 1 -->
-          <source
-            v-for="item in webpSources"
-            v-if="item.index > 0 && item.index < webpSources.length - 1"
-            :key="item.srcset + '-webp-' + item.index"
-            :data-srcset="item.srcset"
-            :media="`(min-width: ${bps[item.index - 1] + 1}px) and (max-width: ${bps[item.index]}px)`"
-            type="image/webp"
-          />
+          <template v-for="(item, idx) in webpSources" :key="item.srcset + '-webp-' + idx">
+            <source
+              v-if="idx > 0 && idx < webpSources.length - 1"
+              :data-srcset="item.srcset"
+              :media="`(min-width: ${(bps?.[idx - 1] ?? 0) + 1}px) and (max-width: ${(bps?.[idx] ?? 9999)}px)`"
+              type="image/webp"
+            />
+          </template>
 
           <!-- Last: min-width >= last breakpoint + 1 -->
           <source
-            v-if="webpSources.length"
-            :data-srcset="webpSources[webpSources.length - 1].srcset"
-            :media="`(min-width: ${bps[bps.length - 1] + 1}px)`"
+            v-if="webpSources[webpSources.length - 1] && bps && bps.length"
+            :data-srcset="webpSources[webpSources.length - 1]?.srcset"
+            :media="`(min-width: ${(bps?.[bps.length - 1] ?? 0) + 1}px)`"
             type="image/webp"
           />
 
           <!-- Repeat same logic for PNG -->
           <source
-            v-if="pngSources.length"
+            v-if="pngSources[0]"
             :data-srcset="pngSources[0].srcset"
             :media="`(max-width: ${bps[0]}px)`"
             type="image/png"
           />
 
-          <source
-            v-for="item in pngSources"
-            v-if="item.index > 0 && item.index < pngSources.length - 1"
-            :key="item.srcset + '-png-' + item.index"
-            :data-srcset="item.srcset"
-            :media="`(min-width: ${bps[item.index - 1] + 1}px) and (max-width: ${bps[item.index]}px)`"
-            type="image/png"
-          />
+          <template v-for="(item, idx) in pngSources" :key="item.srcset + '-png-' + idx">
+            <source
+              v-if="idx > 0 && idx < pngSources.length - 1"
+              :data-srcset="item.srcset"
+              :media="`(min-width: ${(bps?.[idx - 1] ?? 0) + 1}px) and (max-width: ${(bps?.[idx] ?? 9999)}px)`"
+              type="image/png"
+            />
+          </template>
 
           <source
-            v-if="pngSources.length"
-            :data-srcset="pngSources[pngSources.length - 1].srcset"
-            :media="`(min-width: ${bps[bps.length - 1] + 1}px)`"
+            v-if="pngSources[pngSources.length - 1] && bps && bps.length"
+            :data-srcset="pngSources[pngSources.length - 1]?.srcset"
+            :media="`(min-width: ${(bps?.[bps.length - 1] ?? 0) + 1}px)`"
             type="image/png"
           />
         </template>
@@ -194,8 +195,8 @@ function loadImage(pictureElement: HTMLPictureElement) {
           { 'image--photo-modal': isPhotoModal },
         ]"
         :alt="alt || ''"
-        :width="width || undefined"
-        :height="height || undefined"
+        :width="width !== undefined ? width : undefined"
+        :height="height !== undefined ? height : undefined"
         :data-src="src"
         src="~/assets/placeholder.svg"
         :style="{ borderRadius }"

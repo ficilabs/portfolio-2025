@@ -7,19 +7,18 @@ import xml from 'highlight.js/lib/languages/xml'
 import scss from 'highlight.js/lib/languages/scss'
 import 'highlight.js/styles/github.css'
 
-// Register languages
+// Register only the languages you need
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('typescript', typescript)
 hljs.registerLanguage('xml', xml)
 hljs.registerLanguage('scss', scss)
 
-const props = defineProps<{
-  text: string // plain HTML string
-}>()
+const props = defineProps<{ text: string }>() // plain HTML string
 
 const el = ref<HTMLElement | null>(null)
 
-// Run syntax highlighting whenever text changes
+defineExpose({ el })
+
 onMounted(() => {
   hljs.highlightAll()
 })
@@ -34,16 +33,18 @@ watch(
 
 <template>
   <div
-    ref="el"
     class="rich-text"
+    ref="el"
     v-html="props.text"
   />
 </template>
 
-
 <style lang="scss">
 @use 'sass:list';
 
+.rich-text strong {
+  font-weight: 700;
+}
 .rich-text {
   font-weight: 300;
   transition: color 0.5s linear;

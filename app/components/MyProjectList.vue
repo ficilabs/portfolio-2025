@@ -10,7 +10,9 @@ const props = defineProps<{
     title: string
     description: string
     tags?: string[]
-    media?: { url: string; alt?: string }
+    media?: { id: string; url: string; alt?: string }
+    demo?: string
+    code?: string
   }[]
 }>()
 
@@ -52,7 +54,8 @@ function changeFilter(tag: string) {
 <template>
   <section class="projects page__component">
     <MyProjectFilter
-      :buttonList="filters.map(f => ({ id: f.tag, text: f.label, tag: f.tag }))"
+      :buttonList="filters.map(f => ({ id: f.tag, text: f.label, tag: f.tag, isRound: true }))"
+      :filterSelected="selectedFilter"
       @filterSelected="changeFilter"
     />
 
@@ -71,21 +74,20 @@ function changeFilter(tag: string) {
           :key="project.id"
           class="projects__project list-complete-item"
         >
-          <MyProject
-            :title="project.title"
-            :description="project.description"
-            :demo="project.demo"
-            :code="project.code"
-            :media="project.media ? { 
-              id: project.media.id, 
-              filename: project.media.url, 
-              alt: project.media.alt || '' 
-            } : { 
-              id: '', 
-              filename: '', 
-              alt: '' 
-            }"
-          />
+          <MyProject :project="{
+            ...project,
+            demo: project.demo ? { url: project.demo } : undefined,
+            code: project.code ? { url: project.code } : undefined,
+            media: project.media ? {
+              id: project.media.id,
+              filename: project.media.url,
+              alt: project.media.alt || ''
+            } : {
+              id: '',
+              filename: '',
+              alt: ''
+            }
+          }" />
         </li>
       </TransitionGroup>
     </div>
