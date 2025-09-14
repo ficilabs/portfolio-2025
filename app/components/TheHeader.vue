@@ -89,9 +89,9 @@ function animateHeader(): void {
 
     <div class="header__settings">
       <div class="header__lang">
-        <NuxtLink class="header__link link link--lang" to="/en">EN</NuxtLink>
+        <NuxtLink class="header__link link link--lang" to="#">EN</NuxtLink>
         <span aria-hidden="true" class="header__separator">|</span>
-        <NuxtLink class="header__link link link--lang" to="/es">ES</NuxtLink>
+        <NuxtLink class="header__link link link--lang" to="#">ID</NuxtLink>
       </div>
       <LightSwitch />
     </div>
