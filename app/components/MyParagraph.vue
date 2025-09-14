@@ -67,12 +67,18 @@ function createScrollTriggerTl(target: Element): gsap.core.Timeline {
     :class="[
       'paragraph',
       { 'paragraph--reversed': isReversed },
-      { 'paragraph--scroll': showScroll },
     ]"
   >
     <!-- Text content -->
-    <div ref="paragraphRef" class="paragraph__text">
-      <p v-if="text">{{ text }}</p>
+    <div ref="paragraphRef" class="paragraph__text" style="padding-bottom: 5rem;">
+      <client-only >
+        <MyRichText
+          ref="textRef"
+          class="hero__text"
+          :text="`${props.text}`"
+        />
+      </client-only>
+      <div style='padding-bottom: 1rem;'></div>
       <MyLink v-if="linkText && link" :link="link">
         {{ linkText }}
       </MyLink>
@@ -86,9 +92,9 @@ function createScrollTriggerTl(target: Element): gsap.core.Timeline {
           alt: 'My Avatar image'
         }"
         :links="[
-          { id: 'linkedin', url: 'https://linkedin.com/in/yourname' },
-          { id: 'github', url: 'https://github.com/yourname' },
-          { id: 'codepen', url: 'https://codepen.io/yourname' }
+          { id: 'linkedin', url: '#' },
+          { id: 'github', url: 'https://github.com/ficilabs' },
+          { id: 'codepen', url: '#' }
         ]"
       />
     </div>
