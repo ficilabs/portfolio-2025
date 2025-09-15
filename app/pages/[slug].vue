@@ -34,8 +34,8 @@ const componentsMap: Record<string, { title: string; content: any }> = {
       filters: [
         { tag: "show-all", label: "All" },
         { tag: "web", label: "Web" },
-        { tag: "mobile", label: "Mobile" },
-        { tag: "design", label: "Design" },
+        { tag: "ai", label: "ai" },
+        { tag: "arduino", label: "arduino" },
       ],
       projects: [
         {
@@ -45,7 +45,7 @@ const componentsMap: Record<string, { title: string; content: any }> = {
           tags: ["web"],
           media: {
             id: "img1",
-            url: "https://a.storyblok.com/f/287010177550645/1092x588/8ef28cc5c9/projects1.png",
+            url: "https://a.storyblok.com/f/287010177550645/1365x599/1c6177be83/projects1.png",
             alt: "Nuxt Portfolio Screenshot",
           },
           demo: "https://portfolio-2025-nine-alpha.vercel.app/",
@@ -55,7 +55,7 @@ const componentsMap: Record<string, { title: string; content: any }> = {
           id: "2",
           title: "QR Code Attendance",
           description: "A QR Code attendance system using laravel framework and adminLTE.",
-          tags: ["mobile"],
+          tags: ["web"],
           media: {
             id: "img2",
             url: "https://a.storyblok.com/f/287010177550645/1365x603/f2d609a5f6/project2.png",
@@ -68,7 +68,7 @@ const componentsMap: Record<string, { title: string; content: any }> = {
           id: "3",
           title: "Multiple Choise Scannner",
           description: "Using OCR technic to extract the image and using Streamlite platform for deployment.",
-          tags: ["design", "web"],
+          tags: ["ai", "web"],
           media: {
             id: "img3",
             url: "https://a.storyblok.com/f/287010177550645/1361x599/33d6c5f1c4/project3.png",
@@ -81,10 +81,10 @@ const componentsMap: Record<string, { title: string; content: any }> = {
           id: "4",
           title: "Prototype Traffict Light",
           description: "Using using fuzzy logic and microcontroller to control flow of the intersection.",
-          tags: ["design", "web"],
+          tags: ["ai", "arduino"],
           media: {
             id: "img4",
-            url: "https://a.storyblok.com/f/287010177550645/1361x599/33d6c5f1c4/project3.png",
+            url: "https://a.storyblok.com/f/287010177550645/1356x626/dc434acded/project4.png",
             alt: "Design System Screenshot",
           },
           demo: "#",
@@ -94,10 +94,10 @@ const componentsMap: Record<string, { title: string; content: any }> = {
           id: "5",
           title: "Smart Dustbin V2",
           description: "Using Camera to classify the waste object then sort using mechanical motor.",
-          tags: ["design", "web"],
+          tags: ["ai", "arduino"],
           media: {
             id: "img5",
-            url: "https://a.storyblok.com/f/287010177550645/1361x599/33d6c5f1c4/project3.png",
+            url: "https://a.storyblok.com/f/287010177550645/1364x633/a849fc19a3/project5.png",
             alt: "Design System Screenshot",
           },
           demo: "#",
@@ -107,10 +107,10 @@ const componentsMap: Record<string, { title: string; content: any }> = {
           id: "6",
           title: "Trivia Quiz API",
           description: "Using travia api and boostrap 4 to make entertaining quiz game.",
-          tags: ["design", "web"],
+          tags: ["web"],
           media: {
             id: "6",
-            url: "https://a.storyblok.com/f/287010177550645/1361x599/33d6c5f1c4/project3.png",
+            url: "https://a.storyblok.com/f/287010177550645/1365x598/f655bf76a2/project6.png",
             alt: "Design System Screenshot",
           },
           demo: "#",
@@ -120,10 +120,10 @@ const componentsMap: Record<string, { title: string; content: any }> = {
           id: "7",
           title: "Prototype Smarthome",
           description: "Using BLYNK app and esp822 to control equipment on home.",
-          tags: ["design", "web"],
+          tags: ["arduino", "web"],
           media: {
             id: "img7",
-            url: "https://a.storyblok.com/f/287010177550645/1361x599/33d6c5f1c4/project3.png",
+            url: "https://a.storyblok.com/f/287010177550645/1362x632/69d5cfbfe2/project7.png",
             alt: "Design System Screenshot",
           },
           demo: "#",
@@ -133,7 +133,7 @@ const componentsMap: Record<string, { title: string; content: any }> = {
           id: "8",
           title: "Object Classification using FOMO algorithm",
           description: "Using costume mobilenet V2 Layers to clasify image.",
-          tags: ["design", "web"],
+          tags: ["ai", "arduino"],
           media: {
             id: "img8",
             url: "https://a.storyblok.com/f/287010177550645/1361x599/33d6c5f1c4/project3.png",
@@ -146,7 +146,7 @@ const componentsMap: Record<string, { title: string; content: any }> = {
           id: "9",
           title: "Smart Box Control",
           description: "Using MQTT broker and esp32 to control light on building.",
-          tags: ["design", "web"],
+          tags: ["arduino", "web"],
           media: {
             id: "img9",
             url: "https://a.storyblok.com/f/287010177550645/1361x599/33d6c5f1c4/project3.png",
@@ -159,7 +159,7 @@ const componentsMap: Record<string, { title: string; content: any }> = {
           id: "9",
           title: "Hudifier System",
           description: "Using Hysteresis to control humidifier tobbaco inside container to keep it on best value.",
-          tags: ["design", "web"],
+          tags: ["ao", "web", "arduino"],
           media: {
             id: "img9",
             url: "https://a.storyblok.com/f/287010177550645/1361x599/33d6c5f1c4/project3.png",
@@ -172,7 +172,7 @@ const componentsMap: Record<string, { title: string; content: any }> = {
           id: "10",
           title: "Islamic Event order",
           description: "Buiild using laravel 12 to help people to order hadrah and sholawat on majlis",
-          tags: ["design", "web"],
+          tags: ["web"],
           media: {
             id: "img10",
             url: "https://a.storyblok.com/f/287010177550645/1361x599/33d6c5f1c4/project3.png",
@@ -185,7 +185,7 @@ const componentsMap: Record<string, { title: string; content: any }> = {
           id: "11",
           title: "Chiken Feeder Automation",
           description: "Using BLYNK platform to automation feed schedule for chinken.",
-          tags: ["design", "web"],
+          tags: ["arduino", "web"],
           media: {
             id: "img11",
             url: "https://a.storyblok.com/f/287010177550645/1361x599/33d6c5f1c4/project3.png",
@@ -197,11 +197,24 @@ const componentsMap: Record<string, { title: string; content: any }> = {
         {
           id: "12",
           title: "RFID Attendance System",
-          description: "Using MQTT broker and esp32 to control light on building.",
-          tags: ["design", "web"],
+          description: "Build with Sweetalert.js and sneat bootstrap template",
+          tags: ["web"],
           media: {
             id: "img9",
-            url: "https://a.storyblok.com/f/287010177550645/1361x599/33d6c5f1c4/project3.png",
+            url: "https://a.storyblok.com/f/287010177550645/1362x591/2385e68b61/project12.png",
+            alt: "Design System Screenshot",
+          },
+          demo: "#",
+          code: "#",
+        },
+        {
+          id: "13",
+          title: "Digit Recognition",
+          description: "Build with Bootstrap 5 and costume CNN layers",
+          tags: ["web"],
+          media: {
+            id: "img9",
+            url: "https://a.storyblok.com/f/287010177550645/1359x594/cc5000dc69/project13.png",
             alt: "Design System Screenshot",
           },
           demo: "#",
