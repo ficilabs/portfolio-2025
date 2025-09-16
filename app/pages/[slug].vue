@@ -149,7 +149,7 @@ const componentsMap: Record<string, { title: string; content: any }> = {
           tags: ["arduino", "web"],
           media: {
             id: "img9",
-            url: "https://a.storyblok.com/f/287010177550645/1361x599/33d6c5f1c4/project3.png",
+            url: "https://a.storyblok.com/f/287010177550645/1355x621/b2e70c6867/project9.png",
             alt: "Design System Screenshot",
           },
           demo: "#",
@@ -162,7 +162,7 @@ const componentsMap: Record<string, { title: string; content: any }> = {
           tags: ["ao", "web", "arduino"],
           media: {
             id: "img9",
-            url: "https://a.storyblok.com/f/287010177550645/1361x599/33d6c5f1c4/project3.png",
+            url: "https://a.storyblok.com/f/287010177550645/1362x621/d6baba6c03/project.png",
             alt: "Design System Screenshot",
           },
           demo: "#",
@@ -188,7 +188,7 @@ const componentsMap: Record<string, { title: string; content: any }> = {
           tags: ["arduino", "web"],
           media: {
             id: "img11",
-            url: "https://a.storyblok.com/f/287010177550645/1361x599/33d6c5f1c4/project3.png",
+            url: "https://a.storyblok.com/f/287010177550645/1365x596/fcfec4f8da/project11.png",
             alt: "Design System Screenshot",
           },
           demo: "#",
